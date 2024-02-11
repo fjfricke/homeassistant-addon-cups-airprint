@@ -52,7 +52,7 @@ RUN tar xf /tmp/epson-inkjet-printer-escpr-1.8.4-1.tar -C /tmp/ \
     # Clean up
     && cd / \
     && rm -rf /tmp/epson-inkjet-printer-escpr-1.8.4-1 \
-    && rm -f /tmp/epson-inkjet-printer-escpr-1.8.4-1.tar.gz
+    && rm -f /tmp/epson-inkjet-printer-escpr-1.8.4-1.tar
 
 # Add user and disable sudo password checking
 RUN useradd \

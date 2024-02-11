@@ -40,7 +40,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy the Epson source code and root filesystem into the image
-COPY epson-inkjet-printer-escpr-1.8.4-1.tar /tmp/
+COPY epson-inkjet-printer-escpr-1.8.4.tar /tmp/
 COPY rootfs /
 
 # Unpack the Epson printer driver source

@@ -44,15 +44,15 @@ COPY epson-inkjet-printer-escpr-1.8.4-1.tar /tmp/
 COPY rootfs /
 
 # Unpack, build, and install the Epson printer driver from source
-RUN tar xf /tmp/epson-inkjet-printer-escpr-1.8.4-1.tar -C /tmp/ \
-    && cd /tmp/epson-inkjet-printer-escpr-1.8.4-1 \
+RUN tar xf /tmp/epson-inkjet-printer-escpr-1.8.4.tar -C /tmp/ \
+    && cd /tmp/epson-inkjet-printer-escpr-1.8.4 \
     && ./configure \
     && make \
     && make install \
     # Clean up
     && cd / \
-    && rm -rf /tmp/epson-inkjet-printer-escpr-1.8.4-1 \
-    && rm -f /tmp/epson-inkjet-printer-escpr-1.8.4-1.tar
+    && rm -rf /tmp/epson-inkjet-printer-escpr-1.8.4 \
+    && rm -f /tmp/epson-inkjet-printer-escpr-1.8.4.tar
 
 # Add user and disable sudo password checking
 RUN useradd \

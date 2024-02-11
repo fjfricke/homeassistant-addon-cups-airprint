@@ -21,7 +21,6 @@ RUN apt-get update \
         hp-ppd  \
         hplip \
         printer-driver-foo2zjs \
-        printer-driver-escpr \
         cups-pdf \
         gnupg2 \
         lsb-release \
@@ -33,7 +32,12 @@ RUN apt-get update \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
+COPY epson-inkjet-printer-escpr_1.8.4_armhf.deb /tmp/
 COPY rootfs /
+
+RUN dpkg -i /tmp/epson-inkjet-printer-escpr_1.8.4_armhf.deb \
+    # Clean up
+    && rm -f /tmp/epson-inkjet-printer-escpr_1.8.4_armhf.deb
 
 # Add user and disable sudo password checking
 RUN useradd \

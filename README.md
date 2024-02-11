@@ -13,5 +13,5 @@ Configuration data is stored in **/data/cups** folder
 This add-on includes the `epson-inkjet-printer-escpr_1.8.4_armhf.deb` package to ensure compatibility with a wide range of Epson printers. This software is covered by the GNU General Public License (GPL), which allows for free use, modification, and distribution under the same license.
 
 #### Source Code and GPL License
-- The source code for this driver can be obtained directly from [Epson's Download Center](https://download.ebz.epson.net/dsc/du/02/DriverDownloadInfo.do?LG2=JA&CN2=US&CTI=176&PRN=Linux%20deb%2032bit%20Raspbian%20package&OSC=LX&DL). 
+- The source code for this driver can be obtained directly from [Epson's Download Center](https://support.epson.net/linux/Printer/LSB_distribution_pages/en/escpr.php). 
 - For more information about the GNU General Public License (GPL) and your rights under it, please visit the [GNU Licenses Page](https://www.gnu.org/licenses/gpl-3.0.html).

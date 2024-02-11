@@ -5,6 +5,7 @@ LABEL io.hass.version="1.0" io.hass.type="addon" io.hass.arch="aarch64|amd64"
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+# Update and install dependencies
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         sudo \
@@ -29,15 +30,29 @@ RUN apt-get update \
         bash-completion \
         procps \
         whois \
+        build-essential \
+        libcups2-dev \
+        libcupsimage2-dev \
+        autoconf \
+        automake \
+        libtool \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-COPY epson-inkjet-printer-escpr_1.8.4_armhf.deb /tmp/
+# Copy the Epson source code and root filesystem into the image
+COPY epson-inkjet-printer-escpr-1.8.4-1.tar /tmp/
 COPY rootfs /
 
-RUN dpkg -i /tmp/epson-inkjet-printer-escpr_1.8.4_armhf.deb \
+# Unpack, build, and install the Epson printer driver from source
+RUN tar xf /tmp/epson-inkjet-printer-escpr-1.8.4-1.tar -C /tmp/ \
+    && cd /tmp/epson-inkjet-printer-escpr-1.8.4-1 \
+    && ./configure \
+    && make \
+    && make install \
     # Clean up
-    && rm -f /tmp/epson-inkjet-printer-escpr_1.8.4_armhf.deb
+    && cd / \
+    && rm -rf /tmp/epson-inkjet-printer-escpr-1.8.4-1 \
+    && rm -f /tmp/epson-inkjet-printer-escpr-1.8.4-1.tar.gz
 
 # Add user and disable sudo password checking
 RUN useradd \

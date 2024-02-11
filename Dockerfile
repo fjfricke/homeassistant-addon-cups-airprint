@@ -43,14 +43,23 @@ RUN apt-get update \
 COPY epson-inkjet-printer-escpr-1.8.4-1.tar /tmp/
 COPY rootfs /
 
-# Unpack, build, and install the Epson printer driver from source
-RUN tar xf /tmp/epson-inkjet-printer-escpr-1.8.4.tar -C /tmp/ \
-    && cd /tmp/epson-inkjet-printer-escpr-1.8.4 \
-    && ./configure \
-    && make \
-    && make install \
-    # Clean up
-    && cd / \
+# Unpack the Epson printer driver source
+RUN tar xf /tmp/epson-inkjet-printer-escpr-1.8.4.tar -C /tmp/
+
+# Navigate to the source directory (adjust this command if the directory name is different)
+WORKDIR /tmp/epson-inkjet-printer-escpr-1.8.4
+
+# Configure the build
+RUN ./configure
+
+# Compile the software
+RUN make
+
+# Install the software
+RUN make install
+
+# Clean up
+RUN cd / \
     && rm -rf /tmp/epson-inkjet-printer-escpr-1.8.4 \
     && rm -f /tmp/epson-inkjet-printer-escpr-1.8.4.tar
 
